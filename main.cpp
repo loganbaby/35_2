@@ -19,12 +19,15 @@ int main() {
 
   auto getRetryingSet = [](std::vector<int>& vec) {
     std::unordered_set<int> set(vec.begin(), vec.end());
-    
-    auto vec_2 = std::make_unique<std::unordered_set<int>>(set);
+    std::vector<int> buff_vec;
+    for (auto& i : set) {
+      buff_vec.push_back(i);
+    }
+    auto vec_2 = std::make_unique<std::vector<int>>(buff_vec);
     return vec_2;
   };
 
-  auto vec_2 = std::make_unique<std::unordered_set<int>>();
+  auto vec_2 = std::make_unique<std::vector<int>>();
   vec_2 = getRetryingSet(vec);
 
   for (auto& i : *vec_2) {
